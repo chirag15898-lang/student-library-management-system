@@ -30,6 +30,9 @@ public class Student {
     @Column(name = "dob" , nullable = false)
     private String dob;
 
+    @OneToOne(mappedBy="student" , cascade = CascadeType.ALL)
+    private Card card;
+
     @Column(name = "gender" , nullable = false)
     private String gender;
 
