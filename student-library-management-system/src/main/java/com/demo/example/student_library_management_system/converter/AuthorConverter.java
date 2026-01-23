@@ -11,8 +11,8 @@ public class AuthorConverter {
         author.setCountry(authorRequestDto.getCountry());
         author.setName(authorRequestDto.getName());
         author.setEmail(authorRequestDto.getEmail());
-        author.setGender(author.getGender());
-        author.setRating(author.getRating());
+        author.setGender(authorRequestDto.getGender());
+        author.setRating(authorRequestDto.getRating());
 
         return author;
     }

@@ -39,6 +39,14 @@ public class Student {
     @Column(name = "department" , nullable = false)
     private String department;
 
+    public Card getCard() {
+        return card;
+    }
+
+    public void setCard(Card card) {
+        this.card = card;
+    }
+
     public int getId() {
         return id;
     }
