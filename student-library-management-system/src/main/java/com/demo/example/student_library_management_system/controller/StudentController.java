@@ -5,6 +5,7 @@ import com.demo.example.student_library_management_system.requestdto.StudentRequ
 
 import com.demo.example.student_library_management_system.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -44,11 +45,33 @@ public class StudentController {
        return response;
     }
 
+    @GetMapping("/findAllByPage")
+    public Page<Student> findAllStudentsUsingPage(@RequestParam int pageNo,@RequestParam int pageSize)
+    {
+        Page<Student> studentPage = studentService.findAllStudentsByPage(pageNo,pageSize);
+        return studentPage;
+    }
+
     @DeleteMapping("/delete/{id}")
     public String deleteStudentById(@PathVariable int id)
     {
       String response = studentService.deleteStudentById(id);
       return response;
     }
+
+    @GetMapping("/findByEmail")
+    public Student findStudentByEmail(@RequestParam String email)
+    {
+        Student student = studentService.findStudentByEmail(email);
+        return student;
+    }
+
+    @GetMapping("/findByDept")
+    public List<Student> findStudentByDept(@RequestParam String dept)
+    {
+        List<Student> studentList = studentService.findStudentByDepartment(dept);
+        return studentList;
+    }
+
 
 }

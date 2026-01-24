@@ -7,6 +7,8 @@ import com.demo.example.student_library_management_system.model.Student;
 import com.demo.example.student_library_management_system.repository.StudentRepository;
 import com.demo.example.student_library_management_system.requestdto.StudentRequestDto;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -47,6 +49,12 @@ public class StudentService {
             return studentList;
         }
 
+        public Page<Student> findAllStudentsByPage(int pageNo , int pageSize)
+        {
+           Page<Student> studentPage = studentRepository.findAll(PageRequest.of(pageNo,pageSize));
+           return studentPage;
+        }
+
         public String updateStudent(int id,StudentRequestDto studentRequestDto)
         {
            Student student =  getStudentById(id);
@@ -74,6 +82,18 @@ public class StudentService {
         {
             studentRepository.deleteById(id);
             return "student with id "+id+" deleted";
+        }
+
+        public Student findStudentByEmail(String email)
+        {
+            Student student = studentRepository.findByEmail(email);
+            return student;
+        }
+
+        public List<Student> findStudentByDepartment(String Dept)
+        {
+            List<Student> studentList = studentRepository.findByDepartment(dept);
+            return studentList;
         }
     }
 
