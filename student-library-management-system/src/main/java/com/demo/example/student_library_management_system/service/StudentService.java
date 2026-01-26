@@ -36,6 +36,10 @@ public class StudentService {
         public Student getStudentById(int id)
         {
             Optional<Student> studentOptional = studentRepository.findById(id);
+            if(!studentOptional.isPresent())
+            {
+                throw new RuntimeException("Student with id not Found");
+            }
             if(studentOptional.isPresent())
             {
                 return studentOptional.get();
